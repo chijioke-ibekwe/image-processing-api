@@ -4,10 +4,11 @@
   "description": "API for resizing images",
   "main": "index.js",
   "scripts": {
-    "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "prettier": "prettier --config .prettierrc ./src/**/*.ts --write",
     "lint": "eslint . --ext .ts",
     "build": "npx tsc",
     "jasmine": "jasmine",
+    "start": "nodemon src/index.ts",
     "test": "npm run build && npm run jasmine"
   },
   "author": "Chijioke Ibekwe",
@@ -16,9 +17,12 @@
     "@types/express": "^4.17.15",
     "@types/jasmine": "^4.3.1",
     "@types/node": "^18.11.18",
+    "@types/sharp": "^0.31.1",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.20",
     "prettier": "^2.8.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
@@ -26,6 +30,7 @@
   "dependencies": {
     "express": "^4.18.2",
     "jasmine": "^4.5.0",
-    "jasmine-spec-reporter": "^7.0.0"
+    "jasmine-spec-reporter": "^7.0.0",
+    "sharp": "^0.31.3"
   }
 }
