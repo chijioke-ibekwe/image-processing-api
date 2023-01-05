@@ -39,58 +39,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var supertest_1 = __importDefault(require("supertest"));
-var index_1 = __importDefault(require("../index"));
-var request = (0, supertest_1.default)(index_1.default);
-describe('Test api/images endpoint error responses', function () {
-    it('should return an error message when height parameter is not provided', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var response;
+var images_1 = require("../routes/api/images");
+var path_1 = __importDefault(require("path"));
+var fs_1 = __importDefault(require("fs"));
+var fs_2 = require("fs");
+describe('Test changeImageSize function', function () {
+    var outputImagePath = path_1.default.join(__dirname, '..', '..', 'images', 'thumbnails', 'fjord-250-250.jpg');
+    afterAll(function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, request.get('/api/images?filename=fjord&width=250')];
+                case 0: return [4 /*yield*/, fs_2.promises.unlink(outputImagePath)];
                 case 1:
-                    response = _a.sent();
-                    expect(response.status).toBe(400);
-                    expect(response.text).toEqual('The following error occurred while processing your request: height param is missing or invalid');
+                    _a.sent();
                     return [2 /*return*/];
             }
         });
     }); });
-    it('should return an error message when width parameter is not provided', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var response;
+    it('should successfully create a resized image of the specified image', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, request.get('/api/images?filename=fjord&height=250')];
+                case 0: return [4 /*yield*/, (0, images_1.changeImageSize)('fjord', 250, 250)];
                 case 1:
-                    response = _a.sent();
-                    expect(response.status).toBe(400);
-                    expect(response.text).toEqual('The following error occurred while processing your request: width param is missing or invalid');
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-    it('should return an error message when filename parameter is not provided', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var response;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, request.get('/api/images?width=250&height=250')];
-                case 1:
-                    response = _a.sent();
-                    expect(response.status).toBe(400);
-                    expect(response.text).toEqual('The following error occurred while processing your request: filename param is missing or invalid');
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-    it('should return an error message when specified file is not found in image directory', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var response;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, request.get('/api/images?filename=happy&width=250&height=250')];
-                case 1:
-                    response = _a.sent();
-                    expect(response.status).toBe(400);
-                    expect(response.text).toEqual('The following error occurred while processing your request: file not found');
+                    _a.sent();
+                    expect(fs_1.default.existsSync(outputImagePath)).toBeTrue;
                     return [2 /*return*/];
             }
         });

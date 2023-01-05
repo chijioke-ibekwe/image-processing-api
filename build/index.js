@@ -11,3 +11,4 @@ app.use('/api', index_1.default);
 app.listen(port, function () {
     console.log("Server listening on port ".concat(port));
 });
+exports.default = app;

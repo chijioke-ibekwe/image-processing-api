@@ -39,11 +39,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.changeImageSize = exports.images = void 0;
 var express_1 = __importDefault(require("express"));
 var sharp_1 = __importDefault(require("sharp"));
 var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
 var images = express_1.default.Router();
+exports.images = images;
+//function to change image size according to specified dimensions using sharp module
 var changeImageSize = function (filename, width, height) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -56,6 +59,7 @@ var changeImageSize = function (filename, width, height) { return __awaiter(void
         }
     });
 }); };
+exports.changeImageSize = changeImageSize;
 images.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var errorMessage, filename, width, height, inputImagePath, outputImagePath;
     return __generator(this, function (_a) {
@@ -67,6 +71,7 @@ images.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 height = Number(req.query.height);
                 inputImagePath = path_1.default.join(__dirname, '..', '..', '..', 'images', 'full', "".concat(filename, ".jpg"));
                 outputImagePath = path_1.default.join(__dirname, '..', '..', '..', 'images', 'thumbnails', "".concat(filename, "-").concat(width, "-").concat(height, ".jpg"));
+                //validation of input parameters
                 if (req.query.filename == null) {
                     errorMessage = 'filename param is missing or invalid';
                 }
@@ -83,7 +88,6 @@ images.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 res
                     .status(400)
                     .send("The following error occurred while processing your request: ".concat(errorMessage));
-                console.error(errorMessage);
                 return [3 /*break*/, 4];
             case 1:
                 if (!fs_1.default.existsSync(outputImagePath)) return [3 /*break*/, 2];
@@ -98,4 +102,3 @@ images.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, f
         }
     });
 }); });
-exports.default = images;
