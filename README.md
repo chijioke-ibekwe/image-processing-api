@@ -41,10 +41,12 @@ or
 
 node ./build/.
 ```
+
 - Open your browser and go to the url `http://localhost:3000/api/images?filename=<filename>&width=<width>&height=<height>` with the specified parameters correctly filled out.
-NB: 
-`<filename>` represents the name of the target file you dropped in the `/images/full` directory, without the .jpg extension
-`<width>` and `<height>` represent the desired width and height of the image in pixels, without the unit. E.g `250`
+  - NB: 
+    - `<filename>` represents the name of the target file you dropped in the `/images/full` directory, without the .jpg extension
+    - `<width>` and `<height>` represent the desired width and height of the image in pixels, without the unit. E.g `250`
+
 - Once the request is sent, the resized image will be rendered on the browser, and the image can be located in the `/images/thumbnails` directory of the project.
 
 ## Author
