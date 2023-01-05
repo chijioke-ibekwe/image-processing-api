@@ -1,5 +1,5 @@
 # Image Processing API
-Image Processing API is an application that can be used to resize jpg images via a single API call. It is built using Node.js and Express as the web app framework.
+Image Processing API is an application that can be used to resize jpg images via a single API call. It was developed using Node.js, TypeScript and Express.
 
 ## Getting Started
 ### Prerequisites
@@ -14,7 +14,7 @@ For running the application you need:
 5. Supertest
 
 ## How to Run
-To run the application locally:
+To build and run the application locally:
 - Clone the repository using the following command:
 ```
 git clone https://github.com/<your-git-username>/image-processing-api.git
@@ -23,9 +23,13 @@ git clone https://github.com/<your-git-username>/image-processing-api.git
 ```
 npm install
 ```
-- (Optional) Run the tests using:
+- Run the tests using:
 ```
 npm run test
+```
+- Build the project to transpile from TypeScript to JavaScript using:
+```
+npm run build
 ```
 - Drop your target image in the directory `/images/full`:
 
