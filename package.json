@@ -4,7 +4,7 @@
   "description": "API for resizing images",
   "main": "index.js",
   "scripts": {
-    "prettier": "prettier --config .prettierrc ./src/**/*.ts --write",
+    "prettier": "prettier --config .prettierrc src --write",
     "lint": "eslint . --ext .ts",
     "build": "npx tsc",
     "jasmine": "jasmine",

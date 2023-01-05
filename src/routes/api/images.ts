@@ -84,4 +84,4 @@ images.get('/', async (req: express.Request, res: express.Response) => {
   }
 });
 
-export {images, changeImageSize};
+export { images, changeImageSize };
